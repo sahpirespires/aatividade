@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="imc.css">
+    <title>Document</title>
+</head>
+<style>
+    .formimc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .pesoEalt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f7f7f7;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .pesoEalt input {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .enviar {
+        background-color: #2980b9;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .enviar:hover {
+        background-color: #2c3e50;
+        transform: translateY(-3px);
+    }
+</style>
+
+<body>
+    <div class="formimc">
+        <form action="" id="formulario" class="pesoEalt"> Peso e Altura
+            <input type="text" name="peso" class="peso">
+            <input type="text" name="altura" class="altura">
+            <button type="submit" class="enviar">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        var formulario = document.getElementById("formulario")
+        function enviarForm(event) {
+            event.preventDefault()
+            var dados = new FormData(this)
+            var peso = dados.get("peso")
+            var altura = dados.get("altura")
+            var alt = altura * altura
+            var imc = peso / alt
+
+            if (imc <= 18.5) {
+                alert("MAGREZA")
+            } else if (imc >= 18.5 && imc <= 24.9) {
+                alert("NORMAL")
+            } else if (imc >= 25.0 && imc <= 29.9) {
+                alert("Sobrepeso")
+            } else if (imc >= 30.0 && imc <= 39.9) {
+                alert("OBESIDADE")
+            } else if (imc >= 40) {
+                alert("OBESIDADE GRAVE")
+            }
+
+        }
+
+        formulario.addEventListener("submit", enviarForm)
+    </script>
+</body>
+
+</html>
